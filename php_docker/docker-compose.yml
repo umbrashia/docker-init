@@ -1,9 +1,16 @@
-version: '3.3'
+version: '3.4'
 services: 
     web:
-        image: php:7.4.7-apache
-        container_name: php74
+        image: php_image:latest 
+        container_name: phpStyle
+        restart: always
+        environment: 
+            MYSQL_USER: "root"
+            MYSQL_ROOT_PASSWORD: "root"
+            MYSQL_PASSWORD: "root"
+            MYSQL_DATABASE: "demo"
         volumes: 
-            - ./php:/var/www/html/
+            - ./code:/var/www/html/mydockerphp
         ports: 
             - 8002:80
+            - 3307:3306
