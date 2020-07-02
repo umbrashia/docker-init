@@ -40,5 +40,3 @@ RUN a2enmod rewrite
 
 # need to be restart 
 RUN service apache2 restart
-
-FROM mysql:8.0.20
