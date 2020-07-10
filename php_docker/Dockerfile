@@ -28,7 +28,7 @@ RUN ACCEPT_EULA=Y apt-get update && ACCEPT_EULA=Y apt-get install -y \
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+RUN docker-php-ext-install pdo_mysql mysqli mbstring exif pcntl bcmath gd
 
 RUN pecl install sqlsrv pdo_sqlsrv xdebug
 

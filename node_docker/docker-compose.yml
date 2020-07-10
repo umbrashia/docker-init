@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  example-service:
+    build: .
+    volumes:
+      - ./code:/usr/src/app
+    restart: always
+    ports:
+      - 4200:8080
+    #   - 9229:9229
+    command: 'node server.js'

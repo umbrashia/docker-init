@@ -1,16 +1,28 @@
-version: '3.4'
-services: 
-    web:
-        image: php_image:latest 
-        container_name: phpStyle
+version: '3.5'
+services:
+    mysql:
+        image: mysql:8.0
+        container_name: shaan-mysql
         restart: always
-        environment: 
-            MYSQL_USER: "root"
-            MYSQL_ROOT_PASSWORD: "root"
-            MYSQL_PASSWORD: "root"
-            MYSQL_DATABASE: "demo"
         volumes: 
             - ./code:/var/www/html/mydockerphp
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_DATABASE=demo
+            - MYSQL_USER=root
+            - MYSQL_PASSWORD=root
+        ports:
+            - 3307:3306
+        expose: 
+            - '3307'
+    web:
+        # image: php_image:latest
+        build: .
+        container_name: phpStyle
+        depends_on: 
+            - mysql
+        restart: always
+        volumes: 
+            - ./:/var/www/html/mydockerphp
         ports: 
             - 8002:80
-            - 3307:3306
